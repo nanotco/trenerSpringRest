@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+
+<title>Lista de Clientes</title>
+
+<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+	<div class="container">
+		<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+		<a th:href="@{/clientes/agregar}" class="btn btn-default">Nuevo Cliente</a>
+		<h1 class="text-center">Lista de clientes</h1>		
+
+		<div th:if="${not #lists.isEmpty(clientes)}">
+					
+			<table class="table table-striped">
+				<tr>
+					<th>Id</th>
+					<th>Rut</th>
+					<th>Nombre</th>
+					<th>Dirección</th>
+					<th>Ver</th>
+					<th>Editar</th>
+					<th>Borrar</th>
+				</tr>
+				<tr th:each="cliente : ${clientes}">
+					<td th:text="${cliente.idCliente}"><a href="/clientes/${cliente.idCliente}">Id</a></td>
+					<td th:text="${cliente.rut}">Rut</td>
+					<td th:text="${cliente.nombre}">Nombre</td>
+					<td th:text="${cliente.direccion}">Dirección</td>
+					<td><a th:href="${ '/clientes/' + cliente.idCliente}">Ver</a></td>
+					<td><a th:href="${'/clientes/edit/' + cliente.idCliente}">Editar</a></td>
+					<td><a th:href="${'/clientes/delete/' + cliente.idCliente}">Borrar</a></td>
+				</tr>
+			</table>
+
+		</div>
+
+	</div>
+
+</body>
+</html>
